@@ -1,5 +1,5 @@
 # Coursera_Project
-###Code Book Chosen
+###Code Book
 National Longitudinal Study of Adolescent Health (AddHealth)
 Code Book Sections:
 Academics and Education, Self Efficacy, Feelings Scale, Relations with Parents,
@@ -10,29 +10,42 @@ Hypothesis:  Children of parents with authoritative parents perform better in sc
 ###Associated Topic
 	What effect does the relationship with parents have on a child’s feelings about self?
 Hypothesis:  The closer the relationship with parents the better a child’s emotional state.
-###Search Terms
-	Parental style
-	Parental relationship
-	Child school performance
-	Correlation between parental relationship and school performance 
+###Code
+/*  define my library  */
+libname mydata "/courses/d1406ae5ba27fe300" access=readonly;
 
-###Literature Reviewed:
-####Impact of Parenting Practices on Adolescent Achievement: Authoritative Parenting, School Involvement, and Encouragement to Succeed
+/*  label several key variables  */
+data addhealth;
+set mydata.addhealth_pds;
+label        h1wp9='Close_to_Mother'   h1wp10='Mother_Cares'   h1wp13='Close_to_Father'   h1wp14='Father_Cares';
 
-•	Laurence Steinberg1,*, Susie D. Lamborn2, Sanford M. Dornbusch3 and Nancy Darling
-Authoritative parenting (high acceptance, supervision, and psychological autonomy granting) leads to better adolescent school performance and stronger school engagement.
-####The Family-School Relation and the Child’s SchooI Performance
+/*  sort by key  */
+proc sort data=addhealth;
+                 by aid;
 
-•	David L. Stevenson, Stanford University
-•	David P. Baker, The Catholic University of America
-Parental involvement is related to a child’s school performance.
-####The Relationship Between Parental Involvement and Urban Secondary School Student Academic Achievement
-A Meta-Analysis
+/*  generate frequencies for the key variables selected  */
+proc freq ;
+tables      h1wp9   h1wp10   h1wp13   h1wp14;
+run;
+ 
+###Results
+ 
 
-•	William H. Jeynes, California State University, Long Beach
-The results indicate that the influence of parental involvement overall is significant for secondary school children. Measures include an overall measure of all components of academic achievement combined, grades, standardized tests, and other measures that generally included teacher rating scales and indices of academic attitudes and behaviors. 
-####Parent Styles Associated With Children's Self-Regulation and Competence in School
-•	Wendy S. Grolnick, New York University
-•	 Richard M. Ryan, University of Rochester
-The purpose of this study was to further explicate the nature of parental influences on children's school-related adjustment and performance. Specifically, they investigated how relevant parent practices are associated not only with achievement per se, but also with the development of attitudes, motives, and self-evaluative outcomes that facilitate negotiation of the social and cognitive demands of school. One dimension that has been linked to school performance outcomes (Hess & Holloway, 1985) and that appeared to be particularly relevant to the development of self-regulation is that of parental control. Described by such terms as "restrictive" (Becker, 1964), "controlling" (Schaefer, 1959), and "autocratic" (Baldwin, 1949), this extreme pole of the control dimensions is characterized by the parent's use of power in achieving compliance as well as a paramount valuing of obedience in children.
+###Summary
+
+####How Close Do You Feel to Your Mother
+
+The values this variable can take scale from 1 (not at all) to 5 (very much). A large majority, approximately 84%, indicate that they are quite a bit or very close to their mother (values 4 and 5). Only two people refused to answer (value 6) and three people didn’t know (value 8), but almost 6% indicated no mother (value 7).
+
+####How Much Do You Think She Cares About You
+
+The values this variable can take scale from 1 (not at all) to 5 (very much). A large majority, over 91%, indicate that their mother cares quite a bit or very much (values 4 and 5). Only one person refused to answer (value 6) and three people didn’t know (value 8), but almost 6% indicated no mother (value 7).
+
+#### How Close Do You Feel to Your Father
+
+The values this variable can take scale from 1 (not at all) to 5 (very much). A majority, approximately 56%, indicate that they are quite a bit or very close to their father (values 4 and 5). Only four people refused to answer (value 6) and one person didn’t know (value 8) but 30% indicated no father (value 7).
+
+####How Much Do You Think He Cares About You
+
+The values this variable can take scale from 1 (not at all) to 5 (very much). A majority, approximately 66%, indicate that their father cares quite a bit or very much (values 4 and 5). There were three people who refused to answer (value 6), one person didn’t know (value 8) and one person said not applicable (value 9), but as before 30% indicated no father.
 
