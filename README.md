@@ -12,6 +12,7 @@ Hypothesis:  Children of parents with authoritative parents perform better in sc
 Hypothesis:  The closer the relationship with parents the better a child’s emotional state.
 ###Code
 /*  define my library  */
+
 libname mydata "/courses/d1406ae5ba27fe300" access=readonly;
 
 /*  label several key variables  */
@@ -23,12 +24,14 @@ set mydata.addhealth_pds;
 label        h1wp9='Close_to_Mother'   h1wp10='Mother_Cares'   h1wp13='Close_to_Father'   h1wp14='Father_Cares';
 
 /*  sort by key  */
+
 proc sort data=addhealth;
                  by aid;
 
 /*  generate frequencies for the key variables selected  */
 
 proc freq ;
+
 tables      h1wp9   h1wp10   h1wp13   h1wp14;
 
 run;
